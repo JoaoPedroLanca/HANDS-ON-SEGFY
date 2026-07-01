@@ -1,3 +1,4 @@
+using DesafioSegfy.Api.Middleware;
 using DesafioSegfy.Domain.Service;
 using DesafioSegfy.Infra;
 using DesafioSegfy.Infra.Repositories;
@@ -32,6 +33,8 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
+app.UseMiddleware<ErrosMiddleware>();
 app.UseHttpsRedirection();
+app.MapControllers();
 
 app.Run();
