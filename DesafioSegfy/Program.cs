@@ -2,6 +2,7 @@ using DesafioSegfy.Api.Middleware;
 using DesafioSegfy.Domain.Service;
 using DesafioSegfy.Infra;
 using DesafioSegfy.Infra.Repositories;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,20 @@ builder.Services.AddDbContext<SegfyDbContext>(opt =>
 builder.Services.AddScoped<IApoliceRepository, ApoliceRepository>();
 builder.Services.AddScoped<ApoliceService>();
 builder.Services.AddControllers();
+
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.InvalidModelStateResponseFactory = context =>
+    {
+        var mensagem = string.Join(" ", context.ModelState.Values
+            .SelectMany(v => v.Errors)
+            .Select(e => string.IsNullOrWhiteSpace(e.ErrorMessage)
+                ? "Requisição inválida."
+                : e.ErrorMessage));
+
+        return new BadRequestObjectResult(new { erro = mensagem });
+    };
+});
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
