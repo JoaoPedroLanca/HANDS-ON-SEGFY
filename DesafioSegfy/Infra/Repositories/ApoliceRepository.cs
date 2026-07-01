@@ -77,7 +77,6 @@ namespace DesafioSegfy.Infra.Repositories
         public async Task<Apolice?> ObterPorIdAsync(Guid id)
         {
             var apolice = await _context.Apolices
-                .AsNoTracking()
                 .FirstOrDefaultAsync(a => a.Id == id);
 
             return apolice;
