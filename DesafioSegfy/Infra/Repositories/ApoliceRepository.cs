@@ -56,7 +56,7 @@ namespace DesafioSegfy.Infra.Repositories
             
             const string sql = @"
                 SELECT *
-                FROM Apolices
+                FROM Apolice
                 WHERE Status = {0}
                     AND DataFimVigencia >= {1}
                     AND DataFimVigencia <= {2}
