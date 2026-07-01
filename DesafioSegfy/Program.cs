@@ -1,4 +1,11 @@
+using DesafioSegfy.Infra;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<SegfyDbContext>(opt =>
+    opt.UseSqlite(builder.Configuration.GetConnectionString("Sqlite")
+                  ?? "Data Source=seguros.db"));
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
