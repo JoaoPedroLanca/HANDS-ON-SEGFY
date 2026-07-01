@@ -30,23 +30,22 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
     };
 });
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+// Swagger / OpenAPI
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope()) 
+using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<SegfyDbContext>();
     context.Database.Migrate();
 };
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
+// Swagger como interface principal: a raiz "/" redireciona para /swagger.
+app.UseSwagger();
+app.UseSwaggerUI();
+app.MapGet("/", () => Results.Redirect("/swagger"));
 
 app.UseMiddleware<ErrosMiddleware>();
 app.UseHttpsRedirection();
