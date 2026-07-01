@@ -43,7 +43,7 @@ namespace DesafioSegfy.Domain.Service
         private static string GerarNumero(DateOnly inicio, int sequencial)
             => $"SEG-{inicio.Year:D4}-{sequencial:D4}";
 
-        public StatusApolice statusVigente(Apolice apolice, DateOnly dataReferencia)
+        public StatusApolice StatusVigente(Apolice apolice, DateOnly dataReferencia)
         {
             if (apolice.Status == StatusApolice.Cancelada)
                 return StatusApolice.Cancelada;
@@ -56,7 +56,7 @@ namespace DesafioSegfy.Domain.Service
 
         public void Cancelar(Apolice apolice, DateOnly dataReferencia)
         {
-            var atual = statusVigente(apolice, dataReferencia);
+            var atual = StatusVigente(apolice, dataReferencia);
 
             if (atual == StatusApolice.Cancelada)
                 throw new DomainException("Apólice já está cancelada");
