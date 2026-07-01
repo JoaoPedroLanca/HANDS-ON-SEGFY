@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="DesafioSegfy.Tests/DesafioSegfy.Tests.csproj" />
+  <Project Path="DesafioSegfy/DesafioSegfy.csproj" />
+</Solution>

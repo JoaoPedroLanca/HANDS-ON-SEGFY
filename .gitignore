@@ -1,0 +1,86 @@
+# ---------------------------------------------
+# .gitignore para projetos .NET (C#)
+# ---------------------------------------------
+
+# Saídas de build
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+build/
+bld/
+[Ll]og/
+[Ll]ogs/
+
+# Resultados de teste / cobertura
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+coverage*.json
+coverage*.xml
+coverage*.info
+*.coverage
+*.coveragexml
+TestResults/
+
+# Cache / arquivos de usuário do Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.userprefs
+
+# Rider / JetBrains
+.idea/
+*.sln.iml
+
+# Visual Studio Code (mantém configs compartilháveis, ignora o resto)
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Restore de pacotes NuGet
+*.nupkg
+*.snupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# ---------------------------------------------
+# Específico deste projeto (API de apólices)
+# ---------------------------------------------
+
+# Banco SQLite gerado em runtime (o app cria via migration no startup)
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# Segredos / configs locais (não versionar credenciais)
+appsettings.*.local.json
+secrets.json
+
+# ---------------------------------------------
+# Diversos
+# ---------------------------------------------
+
+# Arquivos de SO
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Arquivos temporários
+*.tmp
+*.bak
+*.swp
+*~
