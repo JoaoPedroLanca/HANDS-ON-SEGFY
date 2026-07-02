@@ -1,0 +1,93 @@
+@page
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Apólices · Seguro Auto</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/site.css" />
+</head>
+<body>
+    <header class="topbar">
+        <div class="brand">
+            <span class="brand-mark" aria-hidden="true">S</span>
+            <span class="brand-text">
+                <span class="brand-name">Segfy</span>
+                <span class="brand-sub">Apólices · Seguro Auto</span>
+            </span>
+        </div>
+        <button id="btnNova" class="btn btn-primary">Nova apólice</button>
+    </header>
+
+    <main class="page">
+        <section class="alert" id="vencendoBand" aria-live="polite">
+            <div class="alert-head">
+                <span class="alert-eyebrow">Atenção</span>
+                <h2 class="alert-title">Vencendo em 30 dias</h2>
+                <span class="alert-count" id="vencendoCount">—</span>
+            </div>
+            <div class="alert-list" id="vencendoList"></div>
+        </section>
+
+        <section class="records">
+            <div class="records-head">
+                <h2 class="records-title">Apólices emitidas</h2>
+                <span class="records-count" id="totalCount"></span>
+            </div>
+            <div id="lista" class="record-list" aria-live="polite"></div>
+        </section>
+    </main>
+
+    <dialog id="dlgNova" class="dialog">
+        <form id="formNova" class="form">
+            <header class="form-head">
+                <span class="form-eyebrow">Emissão</span>
+                <h3 class="form-title">Nova apólice</h3>
+            </header>
+
+            <label class="field">
+                <span class="field-label">CPF / CNPJ</span>
+                <input name="cpfCnpj" inputmode="numeric" autocomplete="off"
+                       placeholder="Somente números ou com máscara" required />
+            </label>
+
+            <label class="field">
+                <span class="field-label">Placa</span>
+                <input name="placa" autocomplete="off" placeholder="ABC1D23 ou ABC1234"
+                       maxlength="8" required />
+            </label>
+
+            <label class="field">
+                <span class="field-label">Valor do prêmio (R$)</span>
+                <input name="valorPremio" type="number" step="0.01" min="0.01"
+                       placeholder="0,00" required />
+            </label>
+
+            <div class="field-row">
+                <label class="field">
+                    <span class="field-label">Início da vigência</span>
+                    <input name="dataInicio" type="date" required />
+                </label>
+                <label class="field">
+                    <span class="field-label">Fim da vigência</span>
+                    <input name="dataFim" type="date" required />
+                </label>
+            </div>
+
+            <p class="form-error" id="formError" hidden></p>
+
+            <footer class="form-actions">
+                <button type="button" id="btnFechar" class="btn btn-ghost">Descartar</button>
+                <button type="submit" class="btn btn-primary">Emitir apólice</button>
+            </footer>
+        </form>
+    </dialog>
+
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>
