@@ -15,6 +15,7 @@ builder.Services.AddDbContext<SegfyDbContext>(opt =>
 builder.Services.AddScoped<IApoliceRepository, ApoliceRepository>();
 builder.Services.AddScoped<ApoliceService>();
 builder.Services.AddControllers();
+builder.Services.AddRazorPages();
 
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
@@ -42,13 +43,16 @@ using (var scope = app.Services.CreateScope())
     context.Database.Migrate();
 };
 
-// Swagger como interface principal: a raiz "/" redireciona para /swagger.
+app.UseStaticFiles();
+
+// Swagger continua disponível em /swagger; a raiz "/" serve o front (Razor Page).
 app.UseSwagger();
 app.UseSwaggerUI();
-app.MapGet("/", () => Results.Redirect("/swagger"));
 
 app.UseMiddleware<ErrosMiddleware>();
 app.UseHttpsRedirection();
+
 app.MapControllers();
+app.MapRazorPages();
 
 app.Run();
